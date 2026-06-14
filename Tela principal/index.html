@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pt-BR" data-bs-theme="dark">
+<html lang="pt-BR" data-bs-theme="light">
 
 <head>
   <meta charset="utf-8">
@@ -14,31 +14,66 @@
 
 <body>
   <!-- Navbar padrão -->
-  <nav class="navbar navbar-light fixed-top d-flex flex-column align-items-start p-3" fixed-start style="width: 250px; height: 100vh; background-color: #343a40; color: white;">
+  <nav class="navbar navbar-light fixed-top d-flex flex-column align-items-start p-3" fixed-start style="width: 250px; height: 100vh;">
     <div class="container-fluid d-flex flex-column align-items-start p-0" style="flex-direction: column; align-items: flex-start;">
       
       <a class="navbar-brand mb-0 h1 d-flex align-items-center" href="#">
-        <img src="C:\Users\LENOVO\Downloads\Design sem nome.jpg" width="30" height="30" class="d-inline-block align-top me-2" alt="">
+        <img src="C:\Users\LENOVO\Downloads\Design sem nome (1).jpg" width="30" height="30" class="d-inline-block align-top me-2" alt="">
         NotesBlock
       </a>
 
         <ul class="navbar-nav me-auto mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Pastas</a>
+            <a class="nav-link active" aria-current="page" href="#">📁 Pastas</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Perfil</a>
+            <a class="nav-link active" aria-current="page" href="#">👤 Perfil</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Lixeira</a>
+            <a class="nav-link active" aria-current="page" href="#">🗑️ Lixeira</a>
           </li>
-
         </ul>
       </div>
-    </div>
+
+     <div class="d-flex align-items-center mt-auto dropup style-dropup-container" aria-label="Basic outlined example" >
+        <button class="btn btn-outline active theme-toggle mb-0" type="button" data-bs-toggle="dropdown">
+          🎨 Temas
+        </button>
+      <ul class="dropdown-menu themes-list w-100"> 
+        <li>
+          <a class="dropdown-item" href="#" data-theme="light">🌞 Light</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#" data-theme="dark">🌙 Dark</a>
+        </li>
+      </ul>
+     </div>
+      
   </nav>
+
+    <div class="main-content me-0" style="margin-left: 250px; padding: 2rem;">
+    <div class="container">
+      <h1 class="mb-20">Bem-vindo ao NotesBlock</h1>
+      
+      <div class="card-example">
+        <h2>📝 Suas anotações</h2>
+        <p>Clique no botão no canto inferior esquerdo da navbar para alternar entre os temas Light e Dark.</p>
+        <p>A navbar se adapta automaticamente com cores de fundo e texto apropriadas para cada tema.</p>
+      </div>
+    </div>
+  </div>
+
+ <script>
+    document.querySelectorAll('.dropdown-item').forEach(item => {
+      item.addEventListener('click', (e) => {
+        e.preventDefault(); // Evita o comportamento padrão do link
+        const temaSelecionado = e.target.getAttribute('data-theme');
+        document.documentElement.setAttribute('data-bs-theme', temaSelecionado);
+      });
+    });
+  </script>
 </body>
 
 </html>

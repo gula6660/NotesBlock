@@ -1,13 +1,16 @@
-.navbar .container-fluid,.navbar-nav, .nav .flex-column {
+.navbar .container-fluid,
+.navbar-nav,
+.nav .flex-column {
   flex-direction: column;
   align-items: flex-start;
 }
 
 .navbar {
-  width: 25%;
+  width: 250px;
   height: 100vh;
   align-items: flex-start;
   justify-content: flex-start;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .navbar-brand {
@@ -23,16 +26,44 @@
   margin-bottom: 0;
 }
 
-[data-bs-theme="dark"] .navbar {
-  background-color: #212529;
-  border-color: #373b3e;
+.main-content {
+  margin-left: 250px;
+  padding: 20px;
+  transition: all 0.3s ease;
+   min-height: 100vh;
 }
 
-[data-bs-theme="dark"] .navbar-brand,
-[data-bs-theme="dark"] .nav-link {
-  color: #f8f9fa;
+.style-dropup-container {
+  position: absolute;
+  bottom: 2rem;
+  left: 1rem;
+  width: calc(100% - 2rem);
 }
 
-[data-bs-theme="dark"] .nav-link:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+.theme-toggle {
+  width: 100%;
+  font-weight: 600;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+body[data-bs-theme="light"] {
+  background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%) !important;
+}
+
+body[data-bs-theme="light"] .navbar {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%) !important;
+  border-right: 2px solid #e2e8f0 !important;
+  box-shadow: 8px 0 32px rgba(0, 0, 0, 0.12), 2px 0 8px rgba(0, 0, 0, 0.08) !important;
+}
+
+body[data-bs-theme="dark"] {
+  background: radial-gradient(circle at 30% 10%, #1a1f2e 0%, #0a0c15 100%) !important;
+}
+
+body[data-bs-theme="dark"] .navbar {
+  background: linear-gradient(135deg, #0a0c15 0%, #000000 100%) !important;
+  border-right: 2px solid #1e293b !important;
+  box-shadow: 12px 0 40px rgba(0, 0, 0, 0.8), 4px 0 12px rgba(59, 130, 246, 0.1) !important;
 }
