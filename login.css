@@ -1,0 +1,42 @@
+html,
+body {
+    height: 100%;
+}
+
+.form-control,
+.form-floating {
+    width: 100%;
+}
+
+.theme-button-container { 
+    bottom: 25px;
+    left: 15px;
+    z-index: 1000;
+}
+
+.theme-toggle {
+    font-weight: 600;
+    padding: 0.6rem 1.2rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+}
+
+html[data-bs-theme="light"] {
+    background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%) !important;
+}
+
+html[data-bs-theme="light"] .navbar {
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%) !important;
+    border-right: 2px solid #e2e8f0 !important;
+    box-shadow: 8px 0 32px rgba(0, 0, 0, 0.12), 2px 0 8px rgba(0, 0, 0, 0.08) !important;
+}
+
+html[data-bs-theme="dark"] {
+    background: radial-gradient(circle at 30% 10%, #1a1f2e 0%, #0a0c15 100%) !important;
+}
+
+html[data-bs-theme="dark"] .navbar {
+    background: linear-gradient(135deg, #0a0c15 0%, #000000 100%) !important;
+    border-right: 2px solid #1e293b !important;
+    box-shadow: 12px 0 40px rgba(0, 0, 0, 0.8), 4px 0 12px rgba(59, 130, 246, 0.1) !important;
+}
