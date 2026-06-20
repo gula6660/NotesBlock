@@ -3,105 +3,59 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var session = require('express-session');
+var mongoose = require('mongoose');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var notesRouter = require('./routes/notes');   
-var userRouter = require('./routes/user'); 
-
+// 1. INICIALIZAÇÃO DO APP
 var app = express();
 
-// view engine setup
+// 2. CONEXÃO COM O MONGODB (Usando a string que funciona na sua rede local/Atlas corrigida)
+mongoose.connect('mongodb://giulia09_db_user:pass4worD@ac-u7gvd7r-shard-00-00.kr3bgke.mongodb.net:27017,ac-u7gvd7r-shard-00-01.kr3bgke.mongodb.net:27017,ac-u7gvd7r-shard-00-02.kr3bgke.mongodb.net:27017/?ssl=true&replicaSet=atlas-3dg16a-shard-0&authSource=admin&appName=Cluster0')
+  .then(() => console.log('✅ Conectado ao MongoDB com sucesso!'))
+  .catch(err => console.error('❌ Erro ao conectar no MongoDB:', err));
+
+// 3. CONFIGURAÇÃO DO MOTOR DE TELAS (VIEW ENGINE)
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+// 4. MIDDLEWARES PADRÃO (Sem repetições)
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/notes', notesRouter);
-app.use('/user', userRouter);
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
-
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
-
-module.exports = app;
-
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var session = require('express-session');
-var mongoose = require('mongoose');
-
-// Importar rotas existentes
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-
-// Importar novas rotas (você vai criar esses arquivos)
-var authRouter = require('./routes/auth');
-var notesRouter = require('./routes/notes');
-var userRouter = require('./routes/user');
-
-var app = express();
-
-// CONEXÃO COM MONGODB
-mongoose.connect('mongodb://giuliaamaromartins07_db_user:4l8vjRkhWvCttEU8@cluster0.m2epwz3.mongodb.net/?appName=Cluster0')
-  .then(() => console.log('✅ Conectado ao MongoDB'))
-  .catch(err => console.error('❌ Erro ao conectar:', err));
-
-// CONFIGURAÇÃO DA VIEW ENGINE (já existia)
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
-
-// MIDDLEWARES EXISTENTES
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-
-// MIDDLEWARE DE SESSÃO (NOVO)
+// 5. CONFIGURAÇÃO DE SESSÃO (Para o login funcionar)
 app.use(session({
-  secret: 'segredo_do_notesblock',
+  secret: 'segredo',
   resave: false,
   saveUninitialized: false
 }));
 
-// ARQUIVOS ESTÁTICOS (já existia, mas mantém)
-app.use(express.static(path.join(__dirname, 'public')));
+// 6. IMPORTAÇÃO DAS ROTAS
+var principalRouter = require('./routes/principal');
+var usersRouter = require('./routes/users');
+var notesRouter = require('./routes/notes');   
+var userRouter = require('./routes/user'); 
+var newnotesRouter = require('./routes/newnotes'); 
+var lixeiraRouter = require('./routes/lixeira'); 
+var loginRouter = require('./routes/login');
 
-// ROTAS EXISTENTES
-app.use('/', indexRouter);
+// 7. ATIVAÇÃO DAS ROTAS NO EXPRESS
+app.use('/principal', principalRouter);
 app.use('/users', usersRouter);
-
-// NOVAS ROTAS
-app.use('/auth', authRouter);
 app.use('/notes', notesRouter);
 app.use('/user', userRouter);
+app.use('/newnotes', newnotesRouter);
+app.use('/lixeira', lixeiraRouter);
+app.use('/login', loginRouter);
 
-// TRATAMENTO DE ERRO 404 (já existia)
+// 8. TRATAMENTO DE ERRO 404 (Página não encontrada)
 app.use(function(req, res, next) {
   next(createError(404));
 });
 
-// TRATAMENTO DE ERROS (já existia)
+// 9. TRATAMENTO GERAL DE ERROS DO SERVIDOR
 app.use(function(err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -109,4 +63,5 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+// 10. EXPORTAÇÃO DO APP OTIMIZADO
 module.exports = app;

@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-router.get('/', function(req, res) {
+router.get('/user', function(req, res) {
   res.send('Área de usuário - em desenvolvimento');
 });
 
