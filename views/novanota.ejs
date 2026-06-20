@@ -13,22 +13,26 @@
 </head>
 
 <body>
-  <nav class="navbar bg-body-tertiary border-end fixed-top d-flex flex-column align-items-start p-3"
-    style="width: 250px; height: 100vh;">
+  <nav class="navbar bg-body-tertiary border-end fixed-top d-flex flex-column align-items-start p-3" style="width: 250px; height: 100vh;">
     <div class="container-fluid d-flex flex-column align-items-start p-0">
-      <a class="navbar-brand mb-0 h1 d-flex align-items-center" href="#">
-        <img src="C:\Users\LENOVO\Downloads\Design sem nome (1).jpg" width="30" height="30"
-          class="d-inline-block align-top me-2" alt="">
+      <a class="navbar-brand mb-0 h1 d-flex align-items-center" href="/principal">
         NotesBlock
       </a>
 
-      <ul class="navbar-nav me-auto mb-lg-0">
+      <ul class="navbar-nav me-auto mb-lg-0 w-100">
+
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">👤 Perfil</a>
+          <a class="nav-link" href="/user/perfil">👤 Perfil</a>
         </li>
+
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">🗑️ Lixeira</a>
+          <a class="nav-link" href="/lixeira">🗑️ Lixeira</a>
         </li>
+
+         <li class="nav-item mt-3">
+          <a class="nav-link text-danger fw-semibold" href="/user/logout">🚪 Sair da Conta</a>
+        </li>
+        
       </ul>
     </div>
 
@@ -48,78 +52,50 @@
       <div class="editor-container p-4">
         
         <div class="row g-4">
-          
           <div class="col-11">
             <input type="text" class="form-control title-input mb-4" id="noteTitle" placeholder="Digite o título da nota...">
-            
             <div class="note-content mb-4" id="noteContent" contenteditable="true"></div>
           </div>
 
           <div class="col-1 d-flex flex-column align-items-center justify-content-start pt-2">
             <div class="toolbar-vertical d-flex flex-column gap-2 p-2 bg-body-secondary rounded-3 shadow-sm">
-              
-              <button type="button" class="btn btn-outline-secondary btn-tool" onclick="formatText('bold')" 
-                data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Negrito">
+              <button type="button" class="btn btn-outline-secondary btn-tool" onclick="formatText('bold')" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Negrito">
                 <i class="bi bi-type-bold"></i>
               </button>
-              
-              <button type="button" class="btn btn-outline-secondary btn-tool" onclick="formatText('italic')" 
-                data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Itálico">
+              <button type="button" class="btn btn-outline-secondary btn-tool" onclick="formatText('italic')" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Itálico">
                 <i class="bi bi-type-italic"></i>
               </button>
-              
-              <button type="button" class="btn btn-outline-secondary btn-tool" onclick="formatText('underline')" 
-                data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Sublinhado">
+              <button type="button" class="btn btn-outline-secondary btn-tool" onclick="formatText('underline')" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Sublinhado">
                 <i class="bi bi-type-underline"></i>
               </button>
-              
               <hr class="my-1 text-secondary w-100">
-              
-              <button type="button" class="btn btn-outline-secondary btn-tool" onclick="formatText('insertOrderedList')" 
-                data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Lista Numerada">
+              <button type="button" class="btn btn-outline-secondary btn-tool" onclick="formatText('insertOrderedList')" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Lista Numerada">
                 <i class="bi bi-list-ol"></i>
               </button>
-              
-              <button type="button" class="btn btn-outline-secondary btn-tool" onclick="formatText('insertUnorderedList')" 
-                data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Lista com Marcadores">
+              <button type="button" class="btn btn-outline-secondary btn-tool" onclick="formatText('insertUnorderedList')" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Lista com Marcadores">
                 <i class="bi bi-list-ul"></i>
               </button>
-              
               <hr class="my-1 text-secondary w-100">
-              
-              <button type="button" class="btn btn-outline-secondary btn-tool" onclick="formatText('justifyLeft')" 
-                data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Alinhar à Esquerda">
+              <button type="button" class="btn btn-outline-secondary btn-tool" onclick="formatText('justifyLeft')" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Alinhar à Esquerda">
                 <i class="bi bi-justify-left"></i>
               </button>
-              
-              <button type="button" class="btn btn-outline-secondary btn-tool" onclick="formatText('justifyCenter')" 
-                data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Centralizar">
+              <button type="button" class="btn btn-outline-secondary btn-tool" onclick="formatText('justifyCenter')" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Centralizar">
                 <i class="bi bi-justify-center"></i>
               </button>
-              
-              <button type="button" class="btn btn-outline-secondary btn-tool" onclick="formatText('justifyRight')" 
-                data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Alinhar à Direita">
+              <button type="button" class="btn btn-outline-secondary btn-tool" onclick="formatText('justifyRight')" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Alinhar à Direita">
                 <i class="bi bi-justify-right"></i>
               </button>
-              
               <hr class="my-1 text-secondary w-100">
-              
-              <button type="button" class="btn btn-outline-danger btn-tool" onclick="formatText('removeFormat')" 
-                data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Limpar Formatação">
+              <button type="button" class="btn btn-outline-danger btn-tool" onclick="formatText('removeFormat')" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Limpar Formatação">
                 <i class="bi bi-eraser-fill"></i>
               </button>
-              
             </div>
           </div>
         </div>
 
         <div class="d-flex justify-content-start gap-3 mt-3">
-          <button class="btn btn-primary save-btn" onclick="saveNote()">
-            💾 Salvar Nota
-          </button>
-          <button class="btn btn-outline-secondary save-btn" onclick="clearNote()">
-            🗑️ Limpar
-          </button>
+          <button class="btn btn-primary save-btn" onclick="saveNote()">💾 Salvar Nota</button>
+          <button class="btn btn-outline-secondary save-btn" onclick="clearNote()">🗑️ Limpar</button>
         </div>
         
         <div id="feedbackMsg" class="alert mt-3" style="display: none;"></div>
@@ -128,7 +104,6 @@
   </div>
   
   <script>
-    // Inicialização obrigatória dos Tooltips do Bootstrap 5
     document.addEventListener('DOMContentLoaded', function() {
       const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
       const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
@@ -143,12 +118,14 @@
       document.getElementById('noteContent').focus();
     }
     
+    // 🌟 ALTERADO: Agora envia os dados assincronamente para o Node.js via Fetch API
     function saveNote() {
       const title = document.getElementById('noteTitle').value.trim();
       const content = document.getElementById('noteContent').innerHTML;
       const plainContent = document.getElementById('noteContent').innerText.trim();
+      const placeholderText = 'Digite sua nota aqui... Use as ferramentas ao lado para formatar o texto!';
       
-      if (!title && plainContent === '') {
+      if (!title && (plainContent === '' || plainContent === placeholderText)) {
         showFeedback('⚠️ Por favor, adicione um título ou conteúdo para a nota!', 'warning');
         return;
       }
@@ -156,25 +133,33 @@
         showFeedback('⚠️ Por favor, adicione um título para a nota!', 'warning');
         return;
       }
-      if (plainContent === '' || plainContent === 'Digite sua nota aqui... Use as ferramentas ao lado para formatar o texto!') {
+      if (plainContent === '' || plainContent === placeholderText) {
         showFeedback('⚠️ Por favor, adicione algum conteúdo à nota!', 'warning');
         return;
       }
       
-      const note = {
-        id: Date.now(),
-        title: title,
-        content: content,
-        plainContent: plainContent,
-        date: new Date().toLocaleString('pt-BR'),
-        type: 'rich-text'
-      };
-      
-      let notes = JSON.parse(localStorage.getItem('notes') || '[]');
-      notes.push(note);
-      localStorage.setItem('notes', JSON.stringify(notes));
-      
-      showFeedback('✅ Nota salva com sucesso!', 'success');
+      // Enviando os dados via POST para a nossa rota do Express
+      fetch('/newnotes/salvar', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ title: title, content: content })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.sucesso) {
+          showFeedback('✅ Nota salva com sucesso no servidor!', 'success');
+          // Opcional: Redirecionar para a tela principal após salvar
+          setTimeout(() => { window.location.href = '/principal'; }, 1500);
+        } else {
+          showFeedback('❌ Erro ao salvar nota: ' + data.mensagem, 'danger');
+        }
+      })
+      .catch(err => {
+        showFeedback('❌ Erro de comunicação com o servidor.', 'danger');
+        console.error(err);
+      });
     }
     
     function clearNote() {
@@ -189,7 +174,7 @@
     function showFeedback(message, type) {
       const feedback = document.getElementById('feedbackMsg');
       feedback.textContent = message;
-      feedback.className = `alert alert-${type === 'success' ? 'success' : type === 'warning' ? 'warning' : 'info'} mt-3`;
+      feedback.className = `alert alert-${type} mt-3`;
       feedback.style.display = 'block';
       
       setTimeout(() => {

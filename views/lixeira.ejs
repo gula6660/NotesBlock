@@ -8,33 +8,28 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
   <link href="/lixeira.css" rel="stylesheet">
 
-  <title>NotesBlock</title>
-
+  <title>NotesBlock - Lixeira</title>
 </head>
 
 <body>
-  <!-- Navbar padrão -->
-  <nav class="navbar bg-body-tertiary border-end fixed-top d-flex flex-column align-items-start p-3"
-    style="width: 250px; height: 100vh;">
-    <div class="container-fluid d-flex flex-column align-items-start p-0"
-      style="flex-direction: column; align-items: flex-start;">
+  <nav class="navbar bg-body-tertiary border-end fixed-top d-flex flex-column align-items-start p-3" style="width: 250px; height: 100vh;">
+    <div class="container-fluid d-flex flex-column align-items-start p-0">
 
-      <a class="navbar-brand mb-0 h1 d-flex align-items-center" href="#">
-        <img src="C:\Users\LENOVO\Downloads\Design sem nome (1).jpg" width="30" height="30"
-          class="d-inline-block align-top me-2" alt="">
+      <a class="navbar-brand mb-0 h1 d-flex align-items-center" href="/principal">
+        <img src="/images/logo.jpg" width="30" height="30" class="d-inline-block align-top me-2" alt="">
         NotesBlock
       </a>
 
-      <ul class="navbar-nav me-auto mb-lg-0">
-
+      <ul class="navbar-nav me-auto mb-lg-0 w-100">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#"> 👤 Perfil</a>
+          <a class="nav-link" href="/user/perfil"> 👤 Perfil</a>
         </li>
-
-         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">🗑️ Lixeira</a>
+        <li class="nav-item">
+          <a class="nav-link active" href="/lixeira">🗑️ Lixeira</a>
         </li>
-
+        <li class="nav-item mt-3">
+          <a class="nav-link text-danger fw-semibold" href="/user/logout">🚪 Sair da Conta</a>
+        </li>
       </ul>
     </div>
 
@@ -43,61 +38,47 @@
         🎨 Temas
       </button>
       <ul class="dropdown-menu themes-list w-100">
-        <li>
-          <a class="dropdown-item" href="#" data-theme="light">🌞 Light</a>
-        </li>
-        <li>
-          <a class="dropdown-item" href="#" data-theme="dark">🌙 Dark</a>
-        </li>
+        <li><a class="dropdown-item" href="#" data-theme="light">🌞 Light</a></li>
+        <li><a class="dropdown-item" href="#" data-theme="dark">🌙 Dark</a></li>
       </ul>
     </div>
-
   </nav>
 
-<div class="main-content me-0" style="margin-left: 250px; padding: 2rem;">
+  <div class="main-content" style="margin-left: 250px; padding: 2rem;">
     <h1 class="fw-bold mb-0">Lixeira</h1>
     
     <div class="d-flex flex-wrap gap-2 mt-3 mb-5">
-      <button class="btn btn-outline-danger shadow-sm" type="button">
-        Apagar tudo permanentemente
-      </button>
+      <form action="/lixeira/esvaziar" method="POST">
+        <button class="btn btn-outline-danger shadow-sm" type="submit">Apagar tudo permanentemente</button>
+      </form>
       
-      <button class="btn btn-outline-secondary shadow-sm" type="button">
-        Restaurar tudo
-      </button>
-      
-      <button class="btn btn-outline-primary shadow-sm" type="button">
-        Restaurar
-      </button>
+      <form action="/lixeira/restaurar-tudo" method="POST">
+        <button class="btn btn-outline-secondary shadow-sm" type="submit">Restaurar tudo</button>
+      </form>
     </div>
     
-    <!-- Botões de notas-->
     <div class="container">
-
       <div class="d-flex flex-wrap gap-4">
 
-        <div style="width: 200px;">
-          <span class="fs-5 fw-medium d-block mb-2 text-truncate">Título da Nota</span>
-          <button class="btn btn-outline active w-100 p-4 d-flex align-items-center justify-content-center rounded-3 shadow-sm text-decoration-none" style="height: 180px;" type="button">
-            <span class="fs-1 fw-bold"></span>
-          </button>
-        </div>
+        <% if (notas.length === 0) { %>
+          <p class="text-muted">A lixeira está vazia.</p>
+        <% } %>
 
-        <div style="width: 200px;">
-          <span class="fs-5 fw-medium d-block mb-2 text-truncate">Título da Nota</span>
-          <button class="btn btn-outline active w-100 p-4 d-flex align-items-center justify-content-center rounded-3 shadow-sm text-decoration-none" style="height: 180px;" type="button">
-            <span class="fs-1 fw-bold"></span>
-          </button>
-        </div>
-
-        <div style="width: 200px;">
-          <span class="fs-5 fw-medium d-block mb-2 text-truncate">Título da Nota</span>
-          <button class="btn btn-outline active w-100 p-4 d-flex align-items-center justify-content-center rounded-3 shadow-sm text-decoration-none" style="height: 180px;" type="button">
-            <span class="fs-1 fw-bold"></span>
-          </button>
-        </div>
+        <% notas.forEach(function(nota) { %>
+          <div style="width: 200px;">
+            <span class="fs-5 fw-medium d-block mb-2 text-truncate"><%= nota.titulo %></span>
+            <div class="btn-group w-100 shadow-sm rounded-3">
+              <button class="btn btn-outline active p-4 d-flex align-items-center justify-content-center flex-column" style="height: 180px; width: 100%;" type="button">
+                <span class="fs-6 text-muted mb-2">Excluída</span>
+                <form action="/lixeira/restaurar/<%= nota.id %>" method="POST" style="display: inline;">
+                  <button type="submit" class="btn btn-sm btn-primary">Restaurar</button>
+                </form>
+              </button>
+            </div>
+          </div>
+        <% }); %>
         
-    </div>
+      </div>
     </div>
   </div>
 

@@ -55,12 +55,22 @@ app.use(function(req, res, next) {
   next(createError(404));
 });
 
-// 9. TRATAMENTO GERAL DE ERROS DO SERVIDOR
+//erros
 app.use(function(err, req, res, next) {
+  if (res.headersSent) {
+    return next(err);
+  }
+
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
+  
   res.status(err.status || 500);
-  res.render('error');
+  
+  try {
+    res.render('error');
+  } catch (renderError) {
+    res.send('Erro interno no servidor: ' + err.message);
+  }
 });
 
 // 10. EXPORTAÇÃO DO APP OTIMIZADO

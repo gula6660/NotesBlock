@@ -25,11 +25,23 @@ router.post('/', async function(req, res) {
 router.post('/cadastro', async function(req, res) {
   try {
     var { nome, email, senha } = req.body;
+    
+    if (!nome || !email || !senha) {
+      return res.render('loginc', { erro: 'Por favor, preencha todos os campos.' });
+    }
+
     var user = new User({ nome, email, senha });
     await user.save();
-    res.redirect('/login'); 
+    
+  res.redirect('/login'); 
   } catch(err) {
-    res.render('loginc', { erro: 'Erro ao cadastrar: ' + err.message });
+    console.error("Erro capturado no cadastro:", err);
+    
+    if (err.code === 11000) {
+      return res.render('loginc', { erro: 'Este e-mail já está cadastrado no sistema.' });
+    }
+
+    res.render('loginc', { erro: 'Erro no Banco/Model: ' + err.message });
   }
 });
 
