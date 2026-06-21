@@ -27,9 +27,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // 5. CONFIGURAÇÃO DE SESSÃO (Para o login funcionar)
 app.use(session({
-  secret: 'segredo',
-  resave: false,
-  saveUninitialized: false
+  secret: 'segredo_notesblock',
+  resave: true,
+  saveUninitialized: true,
+  cookie: { 
+    secure: false,                   // Certifica que funciona em http://localhost (sem HTTPS)
+    maxAge: 24 * 60 * 60 * 1000      // Mantém o login ativo por 1 dia
+  }
 }));
 
 // 6. IMPORTAÇÃO DAS ROTAS
