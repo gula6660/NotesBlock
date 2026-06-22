@@ -5,20 +5,17 @@ var Note = require('../models/Note');
 
 router.get('/', async function(req, res, next) {
   try {
-
     if (!req.session.userId) {
-      return res.redirect('/login'); 
+    return res.redirect('/login'); 
     }
 
     var user = await User.findById(req.session.userId);
+    var notasDoUsuario = await Note.find({ usuarioId: req.session.userId, excluida: false });
 
     res.render('principal', { 
       title: 'NotesBlock', 
       usuario: user ? user.nome : 'Usuário',
-      notas: [
-        { id: 1, titulo: 'Minha Primeira Nota' },
-        { id: 2, titulo: 'Lista de Compras' }
-      ]
+      notas: notasDoUsuario
     });
 
   } catch (err) {

@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
+
   <script>
     const temaSalvo = localStorage.getItem('theme') || 'light';
     document.documentElement.setAttribute('data-bs-theme', temaSalvo);
@@ -14,12 +14,13 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
   <link href="/novanota.css" rel="stylesheet">
-  
+
   <title>NotesBlock - Escrever Nota</title>
 </head>
 
 <body>
-  <nav class="navbar bg-body-tertiary border-end fixed-top d-flex flex-column align-items-start p-3" style="width: 250px; height: 100vh;">
+  <nav class="navbar bg-body-tertiary border-end fixed-top d-flex flex-column align-items-start p-3"
+    style="width: 250px; height: 100vh;">
     <div class="container-fluid d-flex flex-column align-items-start p-0">
       <a class="navbar-brand mb-0 h1 d-flex align-items-center" href="/principal">
         NotesBlock
@@ -35,10 +36,10 @@
           <a class="nav-link" href="/lixeira">🗑️ Lixeira</a>
         </li>
 
-         <li class="nav-item mt-3">
+        <li class="nav-item mt-3">
           <a class="nav-link text-danger fw-semibold" href="/user/logout">🚪 Sair da Conta</a>
         </li>
-        
+
       </ul>
     </div>
 
@@ -56,43 +57,54 @@
   <div class="main-content" style="margin-left: 250px;">
     <div class="content-wrapper">
       <div class="editor-container p-4">
-        
+
         <div class="row g-4">
           <div class="col-11">
-            <input type="text" class="form-control title-input mb-4" id="noteTitle" placeholder="Digite o título da nota...">
+            <input type="text" class="form-control title-input mb-4" id="noteTitle"
+              placeholder="Digite o título da nota...">
             <div class="note-content mb-4" id="noteContent" contenteditable="true"></div>
           </div>
 
           <div class="col-1 d-flex flex-column align-items-center justify-content-start pt-2">
             <div class="toolbar-vertical d-flex flex-column gap-2 p-2 bg-body-secondary rounded-3 shadow-sm">
-              <button type="button" class="btn btn-outline-secondary btn-tool" onclick="formatText('bold')" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Negrito">
+              <button type="button" class="btn btn-outline-secondary btn-tool" onclick="formatText('bold')"
+                data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Negrito">
                 <i class="bi bi-type-bold"></i>
               </button>
-              <button type="button" class="btn btn-outline-secondary btn-tool" onclick="formatText('italic')" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Itálico">
+              <button type="button" class="btn btn-outline-secondary btn-tool" onclick="formatText('italic')"
+                data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Itálico">
                 <i class="bi bi-type-italic"></i>
               </button>
-              <button type="button" class="btn btn-outline-secondary btn-tool" onclick="formatText('underline')" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Sublinhado">
+              <button type="button" class="btn btn-outline-secondary btn-tool" onclick="formatText('underline')"
+                data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Sublinhado">
                 <i class="bi bi-type-underline"></i>
               </button>
               <hr class="my-1 text-secondary w-100">
-              <button type="button" class="btn btn-outline-secondary btn-tool" onclick="formatText('insertOrderedList')" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Lista Numerada">
+              <button type="button" class="btn btn-outline-secondary btn-tool" onclick="formatText('insertOrderedList')"
+                data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Lista Numerada">
                 <i class="bi bi-list-ol"></i>
               </button>
-              <button type="button" class="btn btn-outline-secondary btn-tool" onclick="formatText('insertUnorderedList')" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Lista com Marcadores">
+              <button type="button" class="btn btn-outline-secondary btn-tool"
+                onclick="formatText('insertUnorderedList')" data-bs-toggle="tooltip" data-bs-placement="left"
+                data-bs-title="Lista com Marcadores">
                 <i class="bi bi-list-ul"></i>
               </button>
               <hr class="my-1 text-secondary w-100">
-              <button type="button" class="btn btn-outline-secondary btn-tool" onclick="formatText('justifyLeft')" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Alinhar à Esquerda">
+              <button type="button" class="btn btn-outline-secondary btn-tool" onclick="formatText('justifyLeft')"
+                data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Alinhar à Esquerda">
                 <i class="bi bi-justify-left"></i>
               </button>
-              <button type="button" class="btn btn-outline-secondary btn-tool" onclick="formatText('justifyCenter')" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Centralizar">
+              <button type="button" class="btn btn-outline-secondary btn-tool" onclick="formatText('justifyCenter')"
+                data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Centralizar">
                 <i class="bi bi-justify-center"></i>
               </button>
-              <button type="button" class="btn btn-outline-secondary btn-tool" onclick="formatText('justifyRight')" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Alinhar à Direita">
+              <button type="button" class="btn btn-outline-secondary btn-tool" onclick="formatText('justifyRight')"
+                data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Alinhar à Direita">
                 <i class="bi bi-justify-right"></i>
               </button>
               <hr class="my-1 text-secondary w-100">
-              <button type="button" class="btn btn-outline-danger btn-tool" onclick="formatText('removeFormat')" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Limpar Formatação">
+              <button type="button" class="btn btn-outline-danger btn-tool" onclick="formatText('removeFormat')"
+                data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Limpar Formatação">
                 <i class="bi bi-eraser-fill"></i>
               </button>
             </div>
@@ -101,16 +113,16 @@
 
         <div class="d-flex justify-content-start gap-3 mt-3">
           <button class="btn btn-primary save-btn" onclick="saveNote()">💾 Salvar Nota</button>
-          <button class="btn btn-outline-secondary save-btn" onclick="clearNote()">🗑️ Limpar</button>
+          <button class="btn btn-outline-secondary save-btn" onclick="clearNote()">Limpar</button>
         </div>
-        
+
         <div id="feedbackMsg" class="alert mt-3" style="display: none;"></div>
       </div>
     </div>
   </div>
-  
+
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
       const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
     });
@@ -123,51 +135,55 @@
       }
       document.getElementById('noteContent').focus();
     }
-    
+
     // 🌟 ALTERADO: Agora envia os dados assincronamente para o Node.js via Fetch API
     function saveNote() {
       const title = document.getElementById('noteTitle').value.trim();
-      const content = document.getElementById('noteContent').innerHTML;
-      const plainContent = document.getElementById('noteContent').innerText.trim();
       const placeholderText = 'Digite sua nota aqui... Use as ferramentas ao lado para formatar o texto!';
-      
-      if (!title && (plainContent === '' || plainContent === placeholderText)) {
-        showFeedback('⚠️ Por favor, adicione um título ou conteúdo para a nota!', 'warning');
-        return;
+
+      // Captura o conteúdo real
+      let content = document.getElementById('noteContent').innerHTML;
+      const plainContent = document.getElementById('noteContent').innerText.trim();
+
+      // 🌟 SEGREDO AQUI: Se o conteúdo for o placeholder, limpa a variável para o banco não receber lixo
+      if (plainContent === placeholderText || plainContent === '') {
+        content = '';
       }
+
+      // Validações visuais obrigatórias
       if (!title) {
         showFeedback('⚠️ Por favor, adicione um título para a nota!', 'warning');
         return;
       }
-      if (plainContent === '' || plainContent === placeholderText) {
+      if (content === '') {
         showFeedback('⚠️ Por favor, adicione algum conteúdo à nota!', 'warning');
         return;
       }
-      
-      // Enviando os dados via POST para a nossa rota do Express
+
+      // Enviando os dados via POST para rota do Express
       fetch('/newnotes/salvar', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
+        credentials: 'include',
         body: JSON.stringify({ title: title, content: content })
       })
-      .then(response => response.json())
-      .then(data => {
-        if (data.sucesso) {
-          showFeedback('✅ Nota salva com sucesso no servidor!', 'success');
-          // Opcional: Redirecionar para a tela principal após salvar
-          setTimeout(() => { window.location.href = '/principal'; }, 1500);
-        } else {
-          showFeedback('❌ Erro ao salvar nota: ' + data.mensagem, 'danger');
-        }
-      })
-      .catch(err => {
-        showFeedback('❌ Erro de comunicação com o servidor.', 'danger');
-        console.error(err);
-      });
+        .then(response => response.json())
+        .then(data => {
+          if (data.sucesso) {
+            showFeedback('✅ Nota salva com sucesso no servidor!', 'success');
+            setTimeout(() => { window.location.href = '/principal'; }, 1500);
+          } else {
+            showFeedback('❌ Erro ao salvar nota: ' + data.mensagem, 'danger');
+          }
+        })
+        .catch(err => {
+          showFeedback('❌ Erro de comunicação com o servidor.', 'danger');
+          console.error(err);
+        });
     }
-    
+
     function clearNote() {
       if (confirm('Tem certeza que deseja limpar tudo? O conteúdo não salvo será perdido.')) {
         document.getElementById('noteTitle').value = '';
@@ -176,56 +192,57 @@
         document.getElementById('noteTitle').focus();
       }
     }
-    
+
     function showFeedback(message, type) {
       const feedback = document.getElementById('feedbackMsg');
       feedback.textContent = message;
       feedback.className = `alert alert-${type} mt-3`;
       feedback.style.display = 'block';
-      
+
       setTimeout(() => {
         feedback.style.display = 'none';
       }, 3000);
     }
-    
-    document.addEventListener('DOMContentLoaded', function() {
+
+    document.addEventListener('DOMContentLoaded', function () {
       const noteContent = document.getElementById('noteContent');
       const placeholderText = 'Digite sua nota aqui... Use as ferramentas ao lado para formatar o texto!';
-      
-      noteContent.addEventListener('focus', function() {
+
+      noteContent.addEventListener('focus', function () {
         if (this.innerText === placeholderText) {
           this.innerHTML = '';
         }
       });
-      
-      noteContent.addEventListener('blur', function() {
+
+      noteContent.addEventListener('blur', function () {
         if (this.innerText.trim() === '') {
           this.innerHTML = placeholderText;
         }
       });
-      
+
       if (noteContent.innerText.trim() === '') {
         noteContent.innerHTML = placeholderText;
       }
     });
   </script>
-    
-    <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const temaSalvo = localStorage.getItem('theme') || 'light';
-    document.documentElement.setAttribute('data-bs-theme', temaSalvo);
-  });
 
-  document.querySelectorAll('.dropdown-item').forEach(item => {
-    item.addEventListener('click', (e) => {
-      e.preventDefault();
-      const temaSelecionado = e.target.getAttribute('data-theme');
-      
-      document.documentElement.setAttribute('data-bs-theme', temaSelecionado);
-      
-      localStorage.setItem('theme', temaSelecionado);
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const temaSalvo = localStorage.getItem('theme') || 'light';
+      document.documentElement.setAttribute('data-bs-theme', temaSalvo);
     });
-  });
-</script>
+
+    document.querySelectorAll('.dropdown-item').forEach(item => {
+      item.addEventListener('click', (e) => {
+        e.preventDefault();
+        const temaSelecionado = e.target.getAttribute('data-theme');
+
+        document.documentElement.setAttribute('data-bs-theme', temaSelecionado);
+
+        localStorage.setItem('theme', temaSelecionado);
+      });
+    });
+  </script>
 </body>
+
 </html>

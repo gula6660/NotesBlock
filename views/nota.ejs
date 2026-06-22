@@ -52,7 +52,7 @@
     <div class="content-wrapper">
       <div class="editor-container p-4">
 
-        <input type="hidden" id="noteId" value="<%= nota.id %>">
+        <input type="hidden" id="noteId" value="<%= nota._id %>">
 
         <div class="row g-4">
           <div class="col-11">
@@ -100,7 +100,7 @@
 
         <div class="d-flex justify-content-start gap-3 mt-3">
           <button class="btn btn-primary save-btn" onclick="saveNote()">💾 Salvar Alterações</button>
-          <button class="btn btn-outline-secondary save-btn" onclick="clearNote()">🗑️ Limpar</button>
+          <button class="btn btn-outline-secondary save-btn" onclick="moveTrash()">🗑️ Lixeira </button>
         </div>
 
         <div id="feedbackMsg" class="alert mt-3" style="display: none;"></div>
@@ -123,7 +123,6 @@
       document.getElementById('noteContent').focus();
     }
 
-    // 🌟 ENVIANDO ALTERAÇÕES DE FORMA REAl PARA O BANCO DE DADOS
     function saveNote() {
       const id = document.getElementById('noteId').value;
       const title = document.getElementById('noteTitle').value.trim();
@@ -151,12 +150,25 @@
         .catch(() => showFeedback('❌ Erro na comunicação com o servidor.', 'danger'));
     }
 
-    function clearNote() {
-      if (confirm('Deseja limpar as modificações não salvas?')) {
-        document.getElementById('noteTitle').value = '';
-        document.getElementById('noteContent').innerHTML = '';
+  function moveTrash() {
+  const id = document.getElementById('noteId').value;
+  if (confirm('Deseja mover esta nota para a lixeira?')) {
+    fetch(`/notes/excluir/${id}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' }
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.sucesso) {
+        showFeedback('🗑️ Nota movida para a lixeira!', 'success');
+        setTimeout(() => { window.location.href = '/principal'; }, 1000);
+      } else {
+        showFeedback('❌ Erro: ' + data.mensagem, 'danger');
       }
-    }
+    })
+    .catch(() => showFeedback('❌ Erro na comunicação com o servidor.', 'danger'));
+  }
+}
 
     function showFeedback(message, type) {
       const feedback = document.getElementById('feedbackMsg');

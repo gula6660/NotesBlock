@@ -20,21 +20,21 @@ app.set('view engine', 'ejs');
 
 // 4. MIDDLEWARES PADRÃO (Sem repetições)
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
-// 5. CONFIGURAÇÃO DE SESSÃO (Para o login funcionar)
 app.use(session({
   secret: 'segredo_notesblock',
   resave: true,
   saveUninitialized: true,
   cookie: { 
-    secure: false,                   // Certifica que funciona em http://localhost (sem HTTPS)
-    maxAge: 24 * 60 * 60 * 1000      // Mantém o login ativo por 1 dia
+    secure: false,                   
+    maxAge: 24 * 60 * 60 * 1000      
   }
 }));
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
 
 // 6. IMPORTAÇÃO DAS ROTAS
 var principalRouter = require('./routes/principal');

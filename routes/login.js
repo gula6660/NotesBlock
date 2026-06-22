@@ -15,7 +15,7 @@ router.post('/', async function (req, res, next) {
       return res.render('loginc', { erro: 'Email ou senha inválidos' });
     }
 
-    req.session.userId = user._id;
+    req.session.userId = user._id.toString();
 
     req.session.save(function (err) {
       if (err) {
