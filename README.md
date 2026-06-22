@@ -5,6 +5,7 @@ Para o projeto foi utilizado:
 - HTML 
 - CSS 
 - Bootstrap
-- Node.js ( Frameworks:Express; CLI: Nodemon; )
 - MongoDB Atlas
-- IA (Gemini e Deepseek)
+- IA (Gemini)
+- Node.js ( Frameworks:Express; CLI: Nodemon; Bibliotecas: bcryptjs; Middlewares:para proteção de páginas e APIs, Fetch API;  EJS Embedded JavaScript)
+
